@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.List;
 
+import static br.com.movies.utils.AwardsRangeUtil.getAwardWinnersByRange;
 import static br.com.movies.utils.CsvUtil.getAllMovieData;
 
 @RestController
-@RequestMapping("/pior-filme")
+@RequestMapping("/consulta")
 public class MoviesController {
 
     @Autowired
@@ -26,25 +27,30 @@ public class MoviesController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<MovieDataResponse> getAllMovies() {
         try {
-            List<MovieData> movies = getAllMovieData();
-            movies.forEach(movie -> movieDataService.save(movie));
-            movieDataService.findByProducers("Allan Carr");
+            init();
+            List<MovieData> movies = movieDataService.findAll();
             return ResponseEntity.ok(new MovieDataResponse(movies));
         } catch (IOException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @GetMapping(value = "teste", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "intervalo-premios", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AwardWinnersResponse> getAwardWinners() {
-//        try {
-//
-//        } catch (IOException e) {
-//            return ResponseEntity.badRequest().build();
-//        }
-        return null;
+        try {
+            init();
+            AwardWinnersResponse awardWinnersResponse = getAwardWinnersByRange(movieDataService.findByWinner());
+            return ResponseEntity.ok(awardWinnersResponse);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-
+    private void init() throws IOException {
+        if(movieDataService.findAll().isEmpty()) {
+            List<MovieData> movies = getAllMovieData();
+            movies.forEach(movie -> movieDataService.save(movie));
+        }
+    }
 
 }
