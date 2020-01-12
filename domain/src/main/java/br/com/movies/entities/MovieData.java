@@ -1,13 +1,28 @@
-package br.com.movies.model;
+package br.com.movies.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class MovieData {
 
+    @Id
+    @GeneratedValue
+    private int id;
     private int year;
     private String title;
     private String studios;
     private String producers;
     private String winner;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getYear() {
         return year;
     }

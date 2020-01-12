@@ -1,6 +1,6 @@
 package br.com.movies.utils;
 
-import br.com.movies.model.MovieData;
+import br.com.movies.entities.MovieData;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
