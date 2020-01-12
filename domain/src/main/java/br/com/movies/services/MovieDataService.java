@@ -17,8 +17,12 @@ public class MovieDataService {
         movieDataRepository.save(movieData);
     }
 
-    public List<MovieData> findByProducers(String producers) {
-        return movieDataRepository.findByProducers(producers);
+    public List<MovieData> findAll(){
+        return movieDataRepository.findAll();
+    }
+
+    public List<MovieData> findByWinner(){
+        return movieDataRepository.findByWinner("yes");
     }
 
 }

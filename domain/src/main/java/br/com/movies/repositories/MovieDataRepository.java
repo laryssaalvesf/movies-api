@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface MovieDataRepository extends JpaRepository<MovieData, Long> {
 
-    List<MovieData> findByProducers(String producers);
+    List<MovieData> findByWinner(String win);
+
 }
