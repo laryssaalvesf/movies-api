@@ -5,6 +5,11 @@ public class AwardWinnersResponse {
     private AwardWinner min;
     private AwardWinner max;
 
+    public AwardWinnersResponse(AwardWinner min, AwardWinner max) {
+        this.min = min;
+        this.max = max;
+    }
+
     public AwardWinner getMin() {
         return min;
     }

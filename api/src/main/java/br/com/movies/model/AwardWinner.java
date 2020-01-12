@@ -8,6 +8,13 @@ public class AwardWinner {
     private int previousWin;
     private int followingWin;
 
+    public AwardWinner(String producer, int interval, int previousWin, int followingWin) {
+        this.producer = producer;
+        this.interval = interval;
+        this.previousWin = previousWin;
+        this.followingWin = followingWin;
+    }
+
     public String getProducer() {
         return producer;
     }
