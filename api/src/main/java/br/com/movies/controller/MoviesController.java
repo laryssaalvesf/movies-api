@@ -4,6 +4,8 @@ import br.com.movies.entities.MovieData;
 import br.com.movies.model.AwardWinnersResponse;
 import br.com.movies.model.MovieDataResponse;
 import br.com.movies.services.MovieDataService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,10 @@ public class MoviesController {
         this.movieDataService = movieDataService;
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna a lista de todos os filmes"),
+            @ApiResponse(code = 400, message = "Erro ao retornar filmes"),
+    })
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<MovieDataResponse> getAllMovies() {
         try {
@@ -39,6 +45,10 @@ public class MoviesController {
         }
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna intervalo entre prêmios (min e max) de produtores"),
+            @ApiResponse(code = 400, message = "Erro ao retornar intervalos de prêmios"),
+    })
     @GetMapping(value = "intervalo-premios", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AwardWinnersResponse> getAwardWinners() {
         try {
