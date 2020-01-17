@@ -21,8 +21,12 @@ import static br.com.movies.utils.CsvUtil.getAllMovieData;
 @RequestMapping("/consulta")
 public class MoviesController {
 
+    private final MovieDataService movieDataService;
+
     @Autowired
-    private MovieDataService movieDataService;
+    public MoviesController(MovieDataService movieDataService) {
+        this.movieDataService = movieDataService;
+    }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<MovieDataResponse> getAllMovies() {

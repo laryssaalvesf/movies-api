@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class MovieDataService {
 
+    private final MovieDataRepository movieDataRepository;
+
     @Autowired
-    private MovieDataRepository movieDataRepository;
+    public MovieDataService(MovieDataRepository movieDataRepository) {
+        this.movieDataRepository = movieDataRepository;
+    }
 
     public void save(MovieData movieData) {
         movieDataRepository.save(movieData);

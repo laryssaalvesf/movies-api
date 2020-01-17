@@ -6,9 +6,9 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,8 @@ public class CsvUtil {
 
     public static List<MovieData> getAllMovieData() throws IOException {
         List<MovieData> movies = new ArrayList<>();
-        Reader reader = Files.newBufferedReader(Paths.get("resources/movielist.csv"));
+        InputStream inputStream = CsvUtil.class.getClassLoader().getResourceAsStream("movielist.csv");
+        Reader reader = new InputStreamReader(inputStream);
         ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
         strategy.setType(MovieData.class);
         strategy.setColumnMapping(COLLUMS);
