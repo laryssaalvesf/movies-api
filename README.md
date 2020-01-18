@@ -25,6 +25,22 @@ Java 8
 
 *{server}/consulta/intervalo-premios* -> retorna os 2 produtores com maior e menor intervalo entre prêmios
 
+## API Documentada 
+
+Swagger -> {server}/swagger-ui.html
+
+## Testes
+
+**Classe:** MoviesControllerTest
+
+**Métodos:**
+
+findAllMovies() -> testa retorno json que deve conter todos os filmes inclusos no teste
+
+findAwardWinners() -> testa retorno json que deve conter 2 produtores com intervalos entre prêmios minimo e máximo
+
+
+
 
 ## Autor
 Laryssa Alves - 2020
